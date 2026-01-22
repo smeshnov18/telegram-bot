@@ -1,5 +1,5 @@
 import os
 
-BOT_TOKEN = os.getenv("BOT_TOKEN")
-MODERATOR_ID = int(os.getenv("MODERATOR_ID"))
+BOT_TOKEN = os.getenv(8595817334:AAF0Sc3avZ5RhJNtSgM6pT01lsJbHPQUX9k)
+MODERATOR_ID = int(os.getenv(1716430087))
 
