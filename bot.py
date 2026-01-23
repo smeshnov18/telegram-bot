@@ -99,5 +99,28 @@ async def review(callback: types.CallbackQuery):
 
     await callback.answer()
 
+import asyncio
+from aiogram.utils.exceptions import TerminatedByOtherGetUpdates
+
+async def on_startup(dp):
+    # на всякий случай отключаем webhook
+    await bot.delete_webhook(drop_pending_updates=True)
+
+async def main():
+    while True:
+        try:
+            executor.start_polling(
+                dp,
+                skip_updates=True,
+                on_startup=on_startup
+            )
+        except TerminatedByOtherGetUpdates:
+            # если Telegram говорит "есть другой getUpdates"
+            await asyncio.sleep(5)
+        except Exception:
+            # защита от бесконечных падений
+            await asyncio.sleep(5)
+
 if __name__ == "__main__":
-    executor.start_polling(dp)
+    asyncio.run(main())
+
